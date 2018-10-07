@@ -28,13 +28,13 @@ public class DBLogging {
         String dbUrl = dataBaseURL + dataBaseName + dataBaseConnParam;
 
         try(Connection connection = DriverManager.getConnection(dbUrl, dataUserName, dataUserPass);
-            PreparedStatement cs = connection.prepareStatement(QUERY);
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
         ) {
-            cs.setString(1, publisher);
-            cs.setLong(2, timestamp);
-            cs.setDouble(3, temp);
-            cs.setInt(4, humidity);
-            cs.execute();
+            preparedStatement.setString(1, publisher);
+            preparedStatement.setLong(2, timestamp);
+            preparedStatement.setDouble(3, temp);
+            preparedStatement.setInt(4, humidity);
+            preparedStatement.execute();
         } catch (SQLException s) {
                 LOGGER.warn("statement was not executed",s);
         }

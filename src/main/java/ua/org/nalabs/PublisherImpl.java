@@ -53,7 +53,7 @@ public class PublisherImpl {
 
         EngineTemperatureHumiditySensor mockDataGenerator = new EngineTemperatureHumiditySensor(client, publisherId);
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-        scheduledExecutorService.scheduleAtFixedRate(mockDataGenerator, 5, 10, TimeUnit.SECONDS);
+        scheduledExecutorService.scheduleAtFixedRate(mockDataGenerator, 2, 4, TimeUnit.SECONDS);
 
 
         //es.shutdown();
