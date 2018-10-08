@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class DBLogging {
     private DBLogging(){}
-    private static final String QUERY = "INSERT INTO sensors_data(publisher, timestamp, temp, humidity) values(?,?,?,?)";
+    private static final String QUERY = "INSERT INTO sensors_data(publisher, t, temp, humidity) values(?,?,?,?)";
     private static final Logger LOGGER = LoggerFactory.getLogger(DBLogging.class.getName());
 
     public static void writeToDb(String publisher, long timestamp, double temp, int humidity) {
@@ -31,7 +31,7 @@ public class DBLogging {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
         ) {
             preparedStatement.setString(1, publisher);
-            preparedStatement.setLong(2, timestamp);
+            preparedStatement.setDate(2, new java.sql.Date(timestamp));
             preparedStatement.setDouble(3, temp);
             preparedStatement.setInt(4, humidity);
             preparedStatement.execute();
